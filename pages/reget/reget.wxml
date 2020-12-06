@@ -1,0 +1,30 @@
+<!--pages/reget/reget.wxml-->
+<view class="bigBox">
+  <view class="logo">
+    <image src="../../image/logo.png"></image>
+  </view>
+  <view class="title">
+    <view>鄂尔多斯市伊康信息技术有限公司</view>
+  </view>
+  <view class="login">
+    <view class="mail">
+      <view>手机号</view>
+      <input type="text" placeholder="输入您的手机号" value="{{cellphone}}" bindinput="registInput"/>
+    </view>
+    <view class="mail">
+      <view>密码</view>
+      <view class="inp">
+        <input password="{{inpType}}" placeholder="输入您的密码" bindinput="topassword" value="{{password}}"/>
+      </view>
+    </view>
+    <view class="mail">
+      <view>再次输入密码</view>
+      <view class="inp">
+        <input password="{{inpType}}" placeholder="输入您的密码" bindinput="topassword1" value="{{password1}}"/>
+      </view>
+    </view>
+  </view>
+  <view class="sgin">
+    <view class="sginIn" bindtap="tologin">确认</view>
+  </view>
+</view>

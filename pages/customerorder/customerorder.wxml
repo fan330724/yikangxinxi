@@ -1,0 +1,152 @@
+<!--pages/customerorder/customerorder.wxml-->
+<view>
+  <noorder wx:if="{{order.length == 0}}"></noorder>
+  <view class="content" wx:else>
+    <view class="list" wx:for="{{order}}" wx:key="index">
+      <!-- 待接单模板 -->
+      <view wx:if="{{item.orderState == 1}}">
+        <view class="li border">
+          <view class="li-l flex">
+            <view class="left">
+              <view class="title">姓名：</view>
+              <text>{{item.name}}</text>
+            </view>
+            <view class="right">
+              <view class="status">待接单</view>
+            </view>
+          </view>
+          <view class="li-l">
+            <view class="title">联系电话：</view>
+            <text>{{item.tel}}</text>
+          </view>
+          <view class="li-l">
+            <view class="title">地址：</view>
+            <text>{{item.address}}</text>
+          </view>
+          <view class="li-l">
+            <view class="title">故障描述：</view>
+            <text>{{item.description}}</text>
+          </view>
+          <view class="li-l">
+            <view class="title">订单时间：</view>
+            <text>{{item.createDate}}</text>
+          </view>
+          <view class="li-l">
+            <view class="title">订单编号：</view>
+            <text>{{item.orderNumber}}</text>
+          </view>
+        </view>
+        <view class="bottom">
+          <view class="giveup" bindtap="togiveup" data-orderid="{{item.orderId}}" >放弃维修</view>
+        </view>
+      </view>
+      
+      <!-- 其余状态模板 -->
+      <view class="li mb" wx:else>
+        <view class="top">
+          <view class="left">
+            <image src="../../image/head.png" class="head"></image>
+            <text class="title">{{item.pickName}}</text>
+            <image src="../../image/stars.png" class="stars"></image>
+            <text class="branch">{{item.pickUpLevel}} 分</text>
+          </view>
+          <view class="right">
+            <view class="status" wx:if="{{item.orderState == 2}}">已接单</view>
+            <view class="statu" wx:if="{{item.orderState == 3}}">维修中</view>
+            <view class="statu" wx:if="{{item.orderState == 4}}">维修完成</view>
+          </view>
+        </view>
+        <view class="center">
+          <view class="tit">解决方案</view>
+          <text>{{item.mainAdvice}}</text>
+        </view>
+        <view class="footer border">
+          <view class="li-l">
+            <view class="title">订单信息：</view>
+            <text>故障维修</text>
+          </view>
+          <view class="li-l">
+            <view class="title">订单金额：</view>
+            <text>{{item.price}}元</text>
+          </view>
+          <view class="li-l">
+            <view class="title">订单时间：</view>
+            <text>{{item.createDate}}</text>
+          </view>
+          <view class="li-l">
+            <view class="title">订单编号：</view>
+            <text>{{item.orderNumber}}</text>
+          </view>
+        </view>
+        <view class="bottom" wx:if="{{item.orderState == 2}}">
+          <view class="price">
+            金额：￥{{item.price}}
+          </view>
+          <view class="confirm ml" bindtap="toconfirm" data-orderid="{{item.orderId}}">确认维修</view>
+          <view class="giveup" bindtap="togiveup" data-orderid="{{item.orderId}}">放弃维修</view>
+        </view>
+        <view class="bottom" wx:if="{{item.orderState == 3}}">
+          <view class="confirm" bindtap="tocontact" data-phone="{{item.pickTel}}">联系师傅</view>
+        </view>
+        <!-- 提货方式 -->
+        <view class="mode" wx:if="{{item.orderState >= 4 && item.modeDes == null}}">
+          <view class="txt">您的设备已维修完成，请选择配送方式</view>
+          <radio-group bindchange="radioChange">
+            <label>
+              上门配送
+              <radio value="上门配送" color="#01A1FF"></radio>
+            </label>
+            <label>
+              到店自取
+              <radio value="到店自取" checked="true" color="#01A1FF"></radio>
+            </label>
+          </radio-group>
+          <view class="submit" bindtap="tosubmit" data-orderid="{{item.orderId}}">提交</view>
+        </view>
+        <view class="modes"  wx:if="{{item.modeDes}}">
+          <view>配送方式：</view>
+          <text>{{item.modeDes}}</text>
+        </view>
+        <!-- 评分 -->
+        <view class="star" wx:if="{{item.orderState == 4}}">
+          <view class="top1">
+            <view class="title">用户评价</view>
+            <image src="../../image/niming.png"></image>
+          </view>
+          <view class="start">
+            <view class="stars">
+              <block wx:for="{{item.one_2}}" wx:key="index" wx:for-item="item1">
+                <image src="../../image/stars.png" catchtap='in_xin' id='{{index+1}}' data-in='use_sc2' data-orderid="{{item.orderId}}"></image>
+              </block>
+              <block wx:for="{{item.two_2}}" wx:key="index" wx:for-item="item1">
+                <image src="../../image/nostars.png" catchtap='in_xin' id='{{index+1}}' data-in='use_sc' data-orderid="{{item.orderId}}"></image>
+              </block>
+            </view>
+            <view class="branch">{{item.one_2}}分</view>
+          </view>
+          <textarea placeholder="请输入您的宝贵意见!" class="textarea" bindinput="totextarea"></textarea>
+          <view class="submit" bindtap="tobranch" data-orderid="{{item.orderId}}">提交</view>
+        </view>
+        <view class="star" wx:if="{{item.orderState == 5}}">
+          <view class="top1">
+            <view class="title">用户评价</view>
+            <image src="../../image/niming.png"></image>
+          </view>
+          <view class="start">
+            <view class="stars">
+              <block wx:for="{{item.level}}" wx:key="index">
+                <image src="../../image/stars.png" id='{{index+1}}' data-in='use_sc2'></image>
+              </block>
+              <block wx:for="{{5-item.level}}" wx:key="index">
+                <image src="../../image/nostars.png" id='{{index+1}}' data-in='use_sc'></image>
+              </block>
+            </view>
+            <view class="branch">{{item.level}}分</view>
+          </view>
+          <view class="opinion">感谢您的宝贵意见，平台将认真采纳</view>
+          <view class="opinion">祝您生活愉快！</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

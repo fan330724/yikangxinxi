@@ -1,0 +1,4 @@
+<!--components/noorder/index.wxml-->
+<view>
+  <image src="../../image/noorder.png" class="noorder"></image>
+</view>

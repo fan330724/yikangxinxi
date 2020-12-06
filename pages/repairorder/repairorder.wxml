@@ -1,0 +1,4 @@
+<!--pages/repairorder/repairorder.wxml-->
+<tabs tabs="{{list}}" navScrollLeft="{{navScrollLeft}}" currentTab="{{currentTab}}" bindswitchNav="switchNav"
+  bindswitchTab="switchTab" orders="{{orders}}">
+</tabs>

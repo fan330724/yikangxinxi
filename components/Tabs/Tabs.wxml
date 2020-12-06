@@ -1,0 +1,59 @@
+<!--components/Tabs/Tabs.wxml-->
+<view class="container">
+  <!-- tab导航栏 -->
+  <!-- scroll-left属性可以控制滚动条位置 -->
+  <!-- scroll-with-animation滚动添加动画过渡 -->
+  <scroll-view scroll-x="true" class="nav" scroll-left="{{navScrollLeft}}" scroll-with-animation="{{true}}">
+    <block wx:for="{{tabs}}" wx:for-index="idx" wx:key="idx">
+      <view class="nav-item {{currentTab == idx ?'active':''}}" data-current="{{idx}}" bindtap="switchNav">
+        {{item.text}}</view>
+    </block>
+  </scroll-view>
+  <!-- 页面内容 -->
+  <swiper class="tab-box" current="{{currentTab}}" duration="300" bindchange="switchTab">
+    <swiper-item wx:for="{{tabs}}" wx:for-item="tabItem" wx:for-index="idx" wx:key="idx" class="tab-content">
+      <noorder wx:if="{{orders.length == 0}}"></noorder>
+      <view class="padd" wx:else>
+        <block wx:for="{{orders}}" wx:key="index">
+          <repair-order list="{{item}}">
+            <view class="status" slot="status" wx:if="{{item.orderState == 1}}">待接单</view>
+            <view class="status {{item.orderState == 2?'status-color':''}}" slot="status"
+              wx:if="{{item.orderState == 2}}">客户确认中</view>
+            <view class="status {{item.orderState == 3?'status-color1':''}}" slot="status" wx:if="{{item.orderState == 3}}">维修中</view>
+            <!-- <view class="status" slot="status" wx:if="{{item.orderState == 4}}">待评价</view> -->
+            <view class="status {{item.orderState == 5?'status-color1':''}}" slot="status" wx:if="{{item.orderState == 4}}">维修完成</view>
+            <view slot="button" class="btn" wx:if="{{item.orderState == 1}}" bindtap="toorders" data-orderid="{{item.orderId}}">确认接单</view>
+            <view slot="button" class="btn" wx:if="{{item.orderState == 2}}" bindtap="tocontact" data-phone="{{item.tel}}">联系客户</view>
+            <view slot="button" class="btn" wx:if="{{item.orderState == 3}}" bindtap="tocomplete" data-orderid="{{item.orderId}}">完成订单</view>
+          </repair-order>
+        </block>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>
+
+<!-- 弹出框 -->
+<view class="pop">
+  <view class="alert-mask" wx:if="{{showModel}}"></view>
+  <view class="modalDlg" wx:if="{{showModel}}">
+    <view class="receive">
+      <form bindsubmit="tosubmit" bindreset="toreset">
+        <view class="content">
+          <view class="title">确认接单</view>
+          <view class="li">
+            <view class="txt">报价：</view>
+            <input type="number" name="number" class="inp"></input>
+          </view>
+          <view class="li">
+            <view class="txt">维修意见：</view>
+            <textarea name="textarea" class="inp textarea"></textarea>
+          </view>
+          <view class="button">
+            <button class="clear sub" hover-class="none" formType="reset"></button>
+            <button class="confirm sub" hover-class="none" formType="submit"></button>
+          </view>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,66 @@
+/* components/repairorder/index.wxss */
+.box{
+  background: white;
+  width: 646rpx;
+  /* height: 580rpx; */
+  padding: 20rpx;
+  border-radius: 20rpx;
+  margin: 20rpx 0;
+}
+.top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  border-bottom: 1px solid #E9E8E8;
+  color: #656565;
+  font-size: 26rpx;
+}
+.top .left{
+  display: flex;
+  align-items: center;
+}
+.top .left .number text{
+  color: #01A1FF;
+}
+.top .left .name{
+  margin-left: 30rpx;
+  color: #666666;
+  font-weight: bold;
+  font-size: 30rpx;
+}
+
+.center{
+  padding: 10rpx 0;
+  border-bottom: 1px dashed #E9E8E8;
+  color: #656565;
+  font-size: 26rpx;
+}
+.center .list{
+  padding: 5rpx 0;
+  display: flex;
+}
+.center .list .title{
+  flex-shrink: 0;
+}
+.center .list:last-child{
+  flex-direction: column;
+}
+.center .list .images{
+  display: flex;
+  margin: 25rpx 0 10rpx 0;
+}
+.center .list .images image:first-child{
+  margin: 0;
+}
+.center .list .images image{
+  margin-left: 20rpx;
+  width: 110rpx;
+  height: 110rpx;
+}
+
+.bottom{
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20rpx;
+}

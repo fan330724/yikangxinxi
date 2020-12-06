@@ -1,0 +1,75 @@
+<!--pages/repair/repair.wxml-->
+<view class="bigBox">
+  <view class="login">
+    <form bindsubmit="toSubmit">
+      <view class="mail">
+        <view>联系人（必填）</view>
+        <input type="text" placeholder="输入联系人姓名" bindinput="registInput" name="name" />
+      </view>
+      <view class="mail">
+        <view>电话（必填）</view>
+        <input type="text" placeholder="输入联系人电话" value="{{cellphone}}" name="phone" />
+      </view>
+      <view class="mail">
+        <view class="location">
+          <text>地址（必填）</text>
+          <image src="../../image/location.png" bindtap="getlocation"></image>
+          <!-- <picker mode="region" bindchange="getchange" value="{{city}}">
+            <view>{{cityname}}</view>
+          </picker> -->
+        </view>
+        <input type="text" value="{{cityname}}" placeholder="输入您的详细地址" name="location"/>
+      </view>
+      <view class="mail">
+        <view class="location">
+          <text>故障描述（必填）</text>
+        </view>
+        <view class="detailed">详细说明需求，便于师傅更好的为您服务</view>
+        <textarea name="detailed" id="" cols="30" rows="10" placeholder="请描述故障情况"></textarea>
+      </view>
+      <view class="mail">
+        <view class="location">
+          <text>上传图片（必填）</text>
+        </view>
+        <view class="detailed">上传照片，便于师傅更好的为您报价</view>
+        <view class="uploader">
+          <view class="uploader-list" wx:for="{{pics}}" wx:key="*this">
+            <image src='{{item}}' data-index="{{index}}" mode="scaleToFill" data-list="{{pics}}" bindtap="imgYu" />
+            <view class='delete' data-index="{{index}}" bindtap='deleteImg'>
+              <image src="../../image/deleteBg.png"></image>
+            </view>
+          </view>
+          <view class="upadd" bindtap='chooseImages' wx:if="{{pics.length < 3 }}">
+            <image src="../../image/upload.png" class="upload"></image>
+          </view>
+        </view>
+      </view>
+      <view class="mail">
+        <view>主机编码</view>
+        <input type="text" placeholder="请输入主机编号" name="code" />
+      </view>
+      <view class="mail">
+        <view class="date">
+          <text>购机日期</text>
+          <picker mode="date" bindchange="getdate">
+            <image src="../../image/date.png"></image>
+          </picker>
+        </view>
+        <input type="text" value="{{date}}" placeholder="请选择您的购机日期" disabled />
+        <view class="uploader">
+          <view class="uploader-list" wx:for="{{picss}}" wx:key="*this">
+            <image src='{{item}}' data-index="{{index}}" mode="scaleToFill" data-list="{{picss}}" bindtap="imgYu" />
+            <view class='delete' data-index="{{index}}" bindtap='deleteImg1'>
+              <image src="../../image/deleteBg.png"></image>
+            </view>
+          </view>
+          <view class="upadd" bindtap='chooseImages1' wx:if="{{picss.length < 3 }}">
+            <image src="../../image/upload1.png" class="upload"></image>
+          </view>
+        </view>
+      </view>
+
+      <button class="sub" hover-class="none" formType="submit">提交</button>
+    </form>
+  </view>
+</view>

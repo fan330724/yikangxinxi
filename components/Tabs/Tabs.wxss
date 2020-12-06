@@ -1,0 +1,151 @@
+/* components/Tabs/Tabs.wxss */
+/* pages/tabs/tabs.wxss */
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.nav {
+  height: 100rpx;
+  /* width: 100%; */
+  box-sizing: border-box;
+  overflow: hidden;
+  line-height: 94rpx;
+  background: white;
+  font-size: 16px;
+  white-space: nowrap;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.nav-item {
+  width: 20%;
+  display: inline-block;
+  text-align: center;
+  /* padding: 25rpx 0; */
+}
+
+.nav-item.active {
+  color: #01A1FF;
+  border-bottom: 5rpx solid #01A1FF;
+}
+
+.tab-box {
+  width: 100%;
+  height: 92% !important;
+  margin-top: 100rpx;
+}
+
+.tab-content {
+  overflow-y: scroll;
+}
+
+.padd{
+  padding: 0 30rpx;
+}
+.btn{
+  width: 150rpx;
+  height: 50rpx;
+  background: #01A1FF;
+  color: white;
+  font-size: 24rpx;
+  line-height: 50rpx;
+  text-align: center;
+  border-radius: 20px;
+}
+.status{
+  color: #01A1FF;
+  font-size: 26rpx;
+}
+.status-color{
+  color: #FF8001;
+}
+.status-color1{
+  color: #30C77E;
+}
+
+/* 弹出框 */
+.pop .alert-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  z-index: 9000;
+  opacity: 0.3;
+}
+
+.pop .modalDlg {
+  width: 80%;
+  /* height: 55%; */
+  position: fixed;
+  top: 50%;
+  left: -1%;
+  z-index: 9999;
+  box-sizing: border-box;
+  padding: 25rpx;
+  margin: -370rpx 85rpx;
+  border-radius: 18rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pop .receive {
+  position: relative;
+  width: 600rpx;
+  height: 624rpx;
+  background: white;
+  border-radius: 14px;
+}
+.pop .content{
+  padding: 40rpx 60rpx;
+}
+.pop .content .title{
+  text-align: center;
+  font-size: 44rpx;
+}
+.pop .content .li{
+  margin: 20rpx 0;
+}
+.pop .content .li .txt{
+  color: #666666;
+  font-size: 32rpx;
+}
+.pop .content .li .inp{
+  width: 480rpx;
+  height: 68rpx;
+  border: 1px solid #F3F3F3;
+  margin-top: 10rpx;
+}
+.pop .content .li .textarea{
+  height: 134rpx;
+}
+
+.pop .content .button{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 56rpx;
+}
+.pop .content .button .sub{
+  width: 200rpx;
+  height: 72rpx;
+  margin: 0 0;
+}
+.pop .content .button .clear{
+  background: url('http://124.70.23.12:8084/gameIcon/clear.png') no-repeat;
+  background-size: 100% 100%;
+}
+.pop .content .button .confirm{
+  background: url('http://124.70.23.12:8084/gameIcon/confirm.png') no-repeat;
+  background-size: 100% 100%;
+}

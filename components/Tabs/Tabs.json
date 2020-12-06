@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "repair-order": "../repairorder/index",
+    "noorder": "../noorder/index"
+  }
+}

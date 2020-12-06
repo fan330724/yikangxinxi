@@ -1,0 +1,4 @@
+/* pages/repairorder/repairorder.wxss */
+page{
+  background: #F9F9F9;
+}

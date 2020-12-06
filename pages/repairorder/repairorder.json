@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "tabs":"../../components/Tabs/Tabs"
+  },
+  "navigationBarTitleText": "订单",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle":"dark",
+  "backgroundColor":"#e6e6e6"
+}

@@ -1,0 +1,48 @@
+<!--components/repairorder/index.wxml-->
+<view class="box">
+  <view class="top">
+    <view class="left">
+      <view class="number">
+        编号：
+        <text>{{list.number}}</text>
+      </view>
+      <view class="name">{{list.name}}</view>
+    </view>
+    <view class="right">
+      <slot name="status"></slot>
+    </view>
+  </view>
+  <view class="center">
+    <view class="list">
+      <view class="title">联系电话：</view>
+      <text>{{list.tel}}</text>
+    </view>
+    <view class="list">
+      <view class="title">地址：</view>
+      <text>{{list.address}}</text>
+    </view>
+    <view class="list">
+      <view class="title">故障描述：</view>
+      <text>{{list.description}}</text>
+    </view>
+    <view class="list">
+      <view class="title">订单时间：</view>
+      <text>{{list.createDate}}</text>
+    </view>
+    <view class="list">
+      <view class="title">订单编号：</view>
+      <text>{{list.orderNumber}}</text>
+    </view>
+    <view class="list">
+      <view class="title">故障图片：</view>
+      <view class="images">
+        <block wx:for="{{list.pic}}" wx:key="index">
+          <image src="{{item.pic}}" bindtap="imgYu" data-list="{{list.pic}}"></image>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class="bottom">
+    <slot name="button"></slot>
+  </view>
+</view>

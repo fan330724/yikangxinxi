@@ -1,0 +1,108 @@
+/* pages/login/login.wxss */
+.bigBox{
+  padding: 30rpx;
+}
+.logo{
+  width: 236rpx;
+  height:236rpx;
+}
+.logo image{
+  width: 100%;
+  height: 100%;
+}
+.title{
+  margin-top: 30rpx;
+  padding-left: 30rpx;
+}
+.title view{
+  font-size: 36rpx;
+  color: #01A1FF;
+  font-weight: bold;
+}
+.title .tabbar{
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+}
+.title .tabbar view{
+  padding-bottom: 10rpx;
+  color: #656565;
+  font-weight: normal;
+}
+.title .tabbar view:nth-of-type(2){
+  margin-left: 50rpx;
+}
+.title .tabbar .cur{
+  color: #01A1FF;
+  border-bottom: 2px solid #01A1FF;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.title text{
+  font-size: 28rpx;
+  color: #8C9198;
+  margin-top: 12rpx;
+}
+.login{
+  margin-top: 60rpx;
+  padding: 0 30rpx;
+}
+.login .mail,.mail view{
+  font-size: 30rpx;
+  color: #5B5E63;
+}
+.login .mail{
+  border-bottom: 2rpx solid #BDC4CE;
+}
+.login .mail:nth-of-type(1){
+  margin-bottom: 40rpx;
+}
+.login .mail view:nth-of-type(1){
+  color: #5B5E63;
+  font-weight: bold;
+}
+.login input{
+  width: 100%;
+  font-size: 26rpx;
+  color: #8C9198;
+  text-align: left;
+  padding: 20rpx 0;
+}
+.login .mail .inp{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border-bottom: 2rpx solid #BDC4CE; */
+}
+.login .mail .inp image{
+  width: 40rpx;
+  height: 40rpx;
+}
+.reget{
+  font-size: 26rpx;
+  color: #01A1FF;
+  text-align: right;
+  margin-top: 40rpx;
+}
+.sgin{
+  margin-top: 40rpx;
+  text-align: center;
+}
+.sgin .sginIn{
+  height: 88rpx;
+  line-height: 88rpx;
+  color: white;
+  border-radius: 60rpx;
+  background-color: #01A1FF;
+}
+.uers{
+  font-size: 28rpx;
+  padding-top: 10px;
+}
+.uers .news{
+  color: #8C9198;
+}
+.uers .register{
+  color: #01A1FF;
+  font-weight: bold;
+}

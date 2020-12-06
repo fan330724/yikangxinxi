@@ -1,0 +1,55 @@
+<!--pages/login/login.wxml-->
+<view class="bigBox">
+  <view class="logo">
+    <image src="../../image/logo.png"></image>
+  </view>
+  <view class="title">
+    <view>鄂尔多斯市伊康信息技术有限公司</view>
+    <view class="tabbar">
+      <view class="{{currentTab==0 ? 'cur' : ''}}" bindtap="currentTab" data-idx="0">客户登录</view>
+      <view class="{{currentTab==1 ? 'cur' : ''}}" bindtap="currentTab" data-idx="1">接单人登录</view>
+    </view>
+  </view>
+  <block wx:if="{{currentTab==0}}">
+    <view class="login">
+      <view class="mail">
+        <view>手机号</view>
+        <input type="text" placeholder="输入您的手机号" value="{{cellphone}}" bindinput="registInput" />
+      </view>
+      <view class="mail">
+        <view>密码</view>
+        <view class="inp">
+          <input password="{{inpType}}" placeholder="输入您的密码" bindinput="topassword" value="{{password}}" />
+          <image src="{{inpType?'../../image/logo-hide.png':'../../image/logo-show.png'}}" bindtap="toshow"></image>
+        </view>
+      </view>
+      <view class="reget" bindtap="toreget">忘记密码？</view>
+    </view>
+    <view class="sgin">
+      <view class="sginIn" bindtap="tologin">登录</view>
+      <view class="uers">
+        <text class="news">新用户？</text>
+        <text class="register" bindtap="toregister">注册</text>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{currentTab==1}}">
+    <view class="login">
+      <view class="mail">
+        <view>手机号</view>
+        <input type="text" placeholder="输入您的手机号" value="{{cellphone}}" bindinput="registInput" />
+      </view>
+      <view class="mail">
+        <view>密码</view>
+        <view class="inp">
+          <input password="{{inpType}}" placeholder="输入您的密码" bindinput="topassword" value="{{password}}" />
+          <image src="{{inpType?'../../image/logo-hide.png':'../../image/logo-show.png'}}" bindtap="toshow"></image>
+        </view>
+      </view>
+      <view class="reget" bindtap="toreget">忘记密码？</view>
+    </view>
+    <view class="sgin">
+      <view class="sginIn" bindtap="tologin">登录</view>
+    </view>
+  </block>
+</view>
