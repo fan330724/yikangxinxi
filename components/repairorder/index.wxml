@@ -3,7 +3,7 @@
   <view class="top">
     <view class="left">
       <view class="number">
-        编号：
+        主机编号：
         <text>{{list.number}}</text>
       </view>
       <view class="name">{{list.name}}</view>
@@ -37,7 +37,7 @@
       <view class="title">故障图片：</view>
       <view class="images">
         <block wx:for="{{list.pic}}" wx:key="index">
-          <image src="{{item.pic}}" bindtap="imgYu" data-list="{{list.pic}}"></image>
+          <image src="{{item}}" bindtap="imgYu" data-list="{{list.pic}}"></image>
         </block>
       </view>
     </view>

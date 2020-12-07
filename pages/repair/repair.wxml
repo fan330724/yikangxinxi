@@ -4,11 +4,11 @@
     <form bindsubmit="toSubmit">
       <view class="mail">
         <view>联系人（必填）</view>
-        <input type="text" placeholder="输入联系人姓名" bindinput="registInput" name="name" />
+        <input type="text" value="{{userinfor.name}}" placeholder="输入联系人姓名" name="name" />
       </view>
       <view class="mail">
         <view>电话（必填）</view>
-        <input type="text" placeholder="输入联系人电话" value="{{cellphone}}" name="phone" />
+        <input type="text" placeholder="输入联系人电话" value="{{userinfor.tel}}" name="phone" />
       </view>
       <view class="mail">
         <view class="location">
@@ -46,7 +46,7 @@
       </view>
       <view class="mail">
         <view>主机编码</view>
-        <input type="text" placeholder="请输入主机编号" name="code" />
+        <input type="text" placeholder="请输入主机编号" name="code" value="{{userinfor.number}}"/>
       </view>
       <view class="mail">
         <view class="date">
@@ -63,7 +63,7 @@
               <image src="../../image/deleteBg.png"></image>
             </view>
           </view>
-          <view class="upadd" bindtap='chooseImages1' wx:if="{{picss.length < 3 }}">
+          <view class="upadd" bindtap='chooseImages1' wx:if="{{picss.length < 1 }}">
             <image src="../../image/upload1.png" class="upload"></image>
           </view>
         </view>

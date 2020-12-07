@@ -4,7 +4,7 @@
   <view class="content" wx:else>
     <view class="list" wx:for="{{order}}" wx:key="index">
       <!-- 待接单模板 -->
-      <view wx:if="{{item.orderState == 1}}">
+      <view wx:if="{{item.orderState == 1 || item.orderState == -1}}">
         <view class="li border">
           <view class="li-l flex">
             <view class="left">
@@ -12,7 +12,8 @@
               <text>{{item.name}}</text>
             </view>
             <view class="right">
-              <view class="status">待接单</view>
+              <view class="status" wx:if="{{item.orderState == 1}}">待接单</view>
+              <view class="status" wx:if="{{item.orderState == -1}}">已放弃</view>
             </view>
           </view>
           <view class="li-l">
@@ -37,7 +38,7 @@
           </view>
         </view>
         <view class="bottom">
-          <view class="giveup" bindtap="togiveup" data-orderid="{{item.orderId}}" >放弃维修</view>
+          <view class="giveup" bindtap="togiveup" data-orderid="{{item.orderId}}" wx:if="{{item.orderState == 1}}">放弃维修</view>
         </view>
       </view>
       
@@ -103,7 +104,7 @@
           </radio-group>
           <view class="submit" bindtap="tosubmit" data-orderid="{{item.orderId}}">提交</view>
         </view>
-        <view class="modes"  wx:if="{{item.modeDes}}">
+        <view class="modes"  wx:if="{{item.modeDes != null}}">
           <view>配送方式：</view>
           <text>{{item.modeDes}}</text>
         </view>

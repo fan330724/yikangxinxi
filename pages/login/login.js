@@ -67,9 +67,18 @@ Page({
           })
           setTimeout(() => {
             if (res.data.errorCode == -1) {
-              app.data.userId = res.data.body.userId
+              var list = res.data.body
+              app.data.userId = list.userId
+              console.log(list)
+              app.data.userinfor = {
+                name: list.name,
+                tel: list.tel,
+                adddetail: list.adddetail,
+                specModel: list.specModel,
+                number: list.number,
+              }
               wx.switchTab({
-                url: '../repair/repair'
+                url: `../repair/repair`
               })
             }
           }, 1000)
@@ -88,7 +97,7 @@ Page({
           setTimeout(() => {
             if (res.data.errorCode == -1) {
               app.data.pickId = res.data.body.pickId
-              wx.reLaunch({
+              wx.redirectTo({
                 url: '../repairorder/repairorder',
               })
             }

@@ -16,13 +16,17 @@ Page({
     date: "", //购机日期
     pics: [], //图片
     picss: [], //凭证图片
+    userinfor:"", //用户信息
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    console.log(app.data.userinfor)
+    this.setData({
+      userinfor:app.data.userinfor
+    })
   },
   //点击小眼睛
   toshow() {
@@ -38,6 +42,7 @@ Page({
     //验证手机号正则
     var pattern = /^[1][3,4,5,6,7,8,9]\d{9}$/;
     var value = e.detail.value;
+    console.log(value)
     if (!value.name) {
       wx.showToast({
         title: '请输入姓名',
@@ -96,8 +101,8 @@ Page({
         buyDate: this.data.date,
         userId: app.data.userId,
         description: value.detailed,
-        picProof: this.data.picss[0] || '' +','+this.data.picss[1] || '' +','+this.data.picss[2] || '' ,
-        pic: this.data.pics[0]+','+this.data.pics[1] ||'' +','+this.data.pics[2] ||''
+        picProof: this.data.picss[0] || '' +','+this.data.picss[1] ||'' +','+this.data.picss[2] ||'',
+        pic: this.data.pics[0] || '' +','+this.data.pics[1] ||'' +','+this.data.pics[2] ||''
       }).then(res => {
         console.log(res)
         wx.showToast({
@@ -295,7 +300,7 @@ Page({
     wx.chooseImage({
       count: 1, // 最多可以选择的图片张数，默认9
       sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
-      sourceType: ['camera'], // album 从相册选图，camera 使用相机，默认二者都有
+      sourceType: ['album'], // album 从相册选图，camera 使用相机，默认二者都有
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;

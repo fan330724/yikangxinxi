@@ -24,6 +24,7 @@ Page({
   //重新加载页面
   tosetTimeout() {
     setTimeout(() => {
+      this.arr = []
       this.onShow()
     }, 1500)
   },
@@ -35,7 +36,7 @@ Page({
     } = e.currentTarget.dataset
     wx.showModal({
       title: "放弃维修",
-      content: "维修师傅联系您上门服务，请保持您的手机畅通!",
+      content: "维修师傅即将上门维修是否放弃？",
       success(res) {
         if (res.confirm) {
           http.toReceOrder({
@@ -223,6 +224,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.arr = [],
     this.request()
   },
 

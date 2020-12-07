@@ -27,7 +27,7 @@ Page({
     currentTab: 0, //点击的索引
     navScrollLeft: 0, //距离左边的距离
   },
-
+  list: [],
   /**
    * 生命周期函数--监听页面加载
    */
@@ -103,16 +103,19 @@ Page({
       var list = res.data.body.cs
       if (res.data.errorCode == -1) {
         console.log(list)
+        list.filter((v) => {
+          console.log(v.picProof)
+        })
         this.setData({
           orders: list
         })
-      }else{
+      } else {
         wx.showToast({
           title: res.data.msg,
-          icon:"none"
+          icon: "none"
         })
         this.setData({
-          orders:""
+          orders: ""
         })
       }
     })
