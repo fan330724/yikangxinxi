@@ -27,7 +27,9 @@ Page({
     currentTab: 0, //点击的索引
     navScrollLeft: 0, //距离左边的距离
   },
-  list: [],
+  list: [], //列表数组
+  picProof: [], //凭证图片
+  pic: [], //故障图片
   /**
    * 生命周期函数--监听页面加载
    */
@@ -99,15 +101,35 @@ Page({
       pickId: app.data.pickId,
       orderState: type
     }).then(res => {
-      console.log(res)
       var list = res.data.body.cs
       if (res.data.errorCode == -1) {
-        console.log(list)
         list.filter((v) => {
-          console.log(v.picProof)
+          let pic = v.pic.filter((v) => {
+            return v!= 'undefined'
+          })
+          this.list.push({
+            address: v.address,
+            buyDate: v.buyDate,
+            createDate:v.createDate,
+            description: v.description,
+            mainAdvice: v.mainAdvice,
+            modec: v.modec,
+            name: v.name,
+            number: v.number,
+            orderId: v.orderId,
+            orderNumber: v.orderNumber,
+            orderState: v.orderState,
+            pic: pic,
+            picProof: v.picProof,
+            pickName: v.pickName,
+            pickTel: v.pickTel,
+            price: v.price,
+            tel: v.tel,
+            userId: v.userId,
+          })
         })
         this.setData({
-          orders: list
+          orders: this.list
         })
       } else {
         wx.showToast({

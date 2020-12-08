@@ -101,8 +101,8 @@ Page({
         buyDate: this.data.date,
         userId: app.data.userId,
         description: value.detailed,
-        picProof: this.data.picss[0] || '' +','+this.data.picss[1] ||'' +','+this.data.picss[2] ||'',
-        pic: this.data.pics[0] || '' +','+this.data.pics[1] ||'' +','+this.data.pics[2] ||''
+        picProof: this.data.picss[0] +','+this.data.picss[1] +','+this.data.picss[2] ||'',
+        pic: this.data.pics[0] +','+this.data.pics[1] +','+this.data.pics[2] ||''
       }).then(res => {
         console.log(res)
         wx.showToast({

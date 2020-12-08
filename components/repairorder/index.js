@@ -28,12 +28,14 @@ Component({
   methods: {
     //图片点击事件
     imgYu: function (event) {
-      var src = event.currentTarget.dataset.src; //获取data-src
-      var imgList = event.currentTarget.dataset.list; //获取data-list
+      console.log(event)
+      let {src,list} = event.currentTarget.dataset; //获取src data-list data-index
+      console.log(list)
+      console.log(src)
       //图片预览
       wx.previewImage({
         current: src, // 当前显示图片的http链接
-        urls: imgList // 需要预览的图片http链接列表
+        urls: list // 需要预览的图片http链接列表
       })
     },
   }

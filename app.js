@@ -1,10 +1,10 @@
 //app.js
 App({
   data: {
-    // userId:"ff8080817604d0e001760f72c6e30000", //用户id
-    // pickId:"ff808081760499dd01760499e1a90001", //接单人id
-    userId:"", //用户id
-    pickId:"", //接单人id
+    userId:"ff8080817604d0e001760f72c6e30000", //用户id
+    pickId:"ff808081760499dd01760499e1a90001", //接单人id
+    // userId:"", //用户id
+    // pickId:"", //接单人id
     userinfor:'', //用户信息
   },
   onLaunch: function () {

@@ -37,7 +37,7 @@
       <view class="title">故障图片：</view>
       <view class="images">
         <block wx:for="{{list.pic}}" wx:key="index">
-          <image src="{{item}}" bindtap="imgYu" data-list="{{list.pic}}"></image>
+          <image src="{{item}}" bindtap="imgYu" data-list="{{list.pic}}" data-src="{{item}}"></image>
         </block>
       </view>
     </view>
