@@ -43,7 +43,7 @@ Page({
         })
       },
     })
-    // this.getOrders(0)
+    this.getOrders(0)
   },
   //点击导航栏
   switchNav(event) {
