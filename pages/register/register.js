@@ -12,6 +12,7 @@ Page({
     city: "",
     cityname: "", //地址
     date:"", //购机日期
+    currentTab: 0, //tab切换索引
   },
 
   /**
@@ -24,6 +25,15 @@ Page({
   toshow() {
     this.setData({
       inpType: !this.data.inpType
+    })
+  },
+  currentTab(e) {
+    if (this.data.currentTab == e.currentTarget.dataset.idx) {
+      return;
+    }
+    this.setData({
+      currentTab: e.currentTarget.dataset.idx,
+      date:""
     })
   },
   //点击注册按钮
@@ -40,48 +50,53 @@ Page({
         icon: 'none',
         mask:true
       })
+      return;
     } else if (!value.phone) {
       wx.showToast({
         title: '请输入手机号',
         icon: 'none',
         mask:true
       })
+      return;
     }else if (!value.password) {
       wx.showToast({
         title: '请输入密码',
         icon: 'none',
         mask:true
       })
+      return;
     } else if (!value.location) {
       wx.showToast({
         title: '请输入详细地址',
         icon: 'none',
         mask:true
       })
-    }else if (!value.model) {
-      wx.showToast({
-        title: '请输入规格型号',
-        icon: 'none',
-        mask:true
-      })
-    }else if (!value.number) {
-      wx.showToast({
-        title: '请输入主机编号',
-        icon: 'none',
-        mask:true
-      })
-    }else if(!this.data.date){
-      wx.showToast({
-        title: '请选择您的购机日期',
-        icon: 'none',
-        mask:true
-      })
-    }else if (!pattern.test(value.phone)) {
+      return;
+    } 
+    if(this.data.currentTab == 0){
+      if (!value.number) {
+        wx.showToast({
+          title: '请输入主机编号',
+          icon: 'none',
+          mask:true
+        })
+        return;
+      } else if(!this.data.date){
+        wx.showToast({
+          title: '请选择您的购机日期',
+          icon: 'none',
+          mask:true
+        })
+        return;
+      }
+    } 
+    if (!pattern.test(value.phone)) {
       wx.showModal({
         title: '提示',
         content: '请输入正确的手机号',
         showCancel: false
       })
+      return;
     }else{
       http.toRegditUser({
         name: value.name,

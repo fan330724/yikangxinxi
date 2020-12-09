@@ -3,8 +3,8 @@
   <view class="top">
     <view class="left">
       <view class="number">
-        主机编号：
-        <text>{{list.number}}</text>
+        编号：
+        <text>{{list.orderNumber}}</text>
       </view>
       <view class="name">{{list.name}}</view>
     </view>

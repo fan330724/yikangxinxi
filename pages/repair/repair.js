@@ -49,48 +49,42 @@ Page({
         icon: 'none',
         mask: true
       })
+      return;
     } else if (!value.phone) {
       wx.showToast({
         title: '请输入手机号',
         icon: 'none',
         mask: true
       })
+      return;
     } else if (!value.location) {
       wx.showToast({
         title: '请输入详细地址',
         icon: 'none',
         mask: true
       })
+      return;
     } else if(!value.detailed){
       wx.showToast({
         title: '请输入故障描述',
         icon: 'none',
         mask: true
       })
-    }else if (!value.code) {
-      wx.showToast({
-        title: '请输入主机编码',
-        icon: 'none',
-        mask: true
-      })
-    } else if (!this.data.date) {
-      wx.showToast({
-        title: '请选择您的购机日期',
-        icon: 'none',
-        mask: true
-      })
-    } else if (this.data.pics.length <= 0) {
+      return;
+    }else if (this.data.pics.length <= 0) {
       wx.showModal({
         title: '提示',
         content: '请上传图片',
         showCancel: false
       })
+      return;
     } else if (!pattern.test(value.phone)) {
       wx.showModal({
         title: '提示',
         content: '请输入正确的手机号',
         showCancel: false
       })
+      return;
     } else {
       console.log(typeof this.data.pics[0])
       http.toReleaseBreak({
@@ -115,7 +109,6 @@ Page({
         },1000)
       })
     }
-    console.log(e.detail.value)
   },
   //获取地理位置
   getlocation() {

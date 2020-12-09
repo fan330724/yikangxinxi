@@ -21,7 +21,7 @@
               wx:if="{{item.orderState == 2}}">客户确认中</view>
             <view class="status {{item.orderState == 3?'status-color1':''}}" slot="status" wx:if="{{item.orderState == 3}}">维修中</view>
             <!-- <view class="status" slot="status" wx:if="{{item.orderState == 4}}">待评价</view> -->
-            <view class="status {{item.orderState == 5?'status-color1':''}}" slot="status" wx:if="{{item.orderState == 4}}">维修完成</view>
+            <view class="status {{item.orderState == 5?'status-color1':''}}" slot="status" wx:if="{{item.orderState == 4 || item.orderState == 5}}">维修完成</view>
             <view slot="button" class="btn" wx:if="{{item.orderState == 1}}" bindtap="toorders" data-orderid="{{item.orderId}}">确认接单</view>
             <view slot="button" class="btn" wx:if="{{item.orderState == 2}}" bindtap="tocontact" data-phone="{{item.tel}}">联系客户</view>
             <view slot="button" class="btn" wx:if="{{item.orderState == 3}}" bindtap="tocomplete" data-orderid="{{item.orderId}}">完成订单</view>

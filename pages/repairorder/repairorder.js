@@ -43,7 +43,7 @@ Page({
         })
       },
     })
-    this.getOrders(0)
+    // this.getOrders(0)
   },
   //点击导航栏
   switchNav(event) {
@@ -55,7 +55,6 @@ Page({
       navScrollLeft: (cur - 2) * singleNavWidth
     })
     if (this.data.currentTab == cur) {
-      // this.switchIf(cur)
       return false
     } else {
       this.setData({
@@ -76,7 +75,6 @@ Page({
   },
   //判断封装
   switchIf(type) {
-    console.log(type)
     switch (type) {
       case 0:
         this.getOrders(0)
@@ -91,7 +89,7 @@ Page({
         this.getOrders(3)
         break;
       case 4:
-        this.getOrders(4)
+        this.getOrders(6)
         break;
     }
   },
@@ -102,6 +100,8 @@ Page({
       orderState: type
     }).then(res => {
       var list = res.data.body.cs
+      console.log(list)
+      this.list = []
       if (res.data.errorCode == -1) {
         list.filter((v) => {
           let pic = v.pic.filter((v) => {

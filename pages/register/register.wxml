@@ -7,18 +7,24 @@
     <view>鄂尔多斯市伊康信息技术有限公司</view>
     <text>请填写信息注册</text>
   </view>
-  <view class="login">
+
+  <view class="tabbar">
+    <view class="{{currentTab==0 ? 'cur' : ''}}" bindtap="currentTab" data-idx="0">新机注册</view>
+    <view class="{{currentTab==1 ? 'cur' : ''}}" bindtap="currentTab" data-idx="1">故障报修</view>
+  </view>
+  <!-- 新机注册 -->
+  <view class="login" wx:if="{{currentTab==0}}">
     <form bindsubmit="toSubmit">
       <view class="mail">
-        <view>姓名</view>
+        <view>姓名（必填）</view>
         <input type="text" placeholder="输入您的姓名" bindinput="registInput" name="name" />
       </view>
       <view class="mail">
-        <view>手机号</view>
+        <view>手机号（必填）</view>
         <input type="text" placeholder="输入您的手机号" name="phone" />
       </view>
       <view class="mail">
-        <view>密码</view>
+        <view>密码（必填）</view>
         <view class="inp">
           <input password="{{inpType}}" placeholder="输入您的密码" name="password" />
           <image src="{{inpType?'../../image/logo-hide.png':'../../image/logo-show.png'}}" bindtap="toshow"></image>
@@ -26,7 +32,57 @@
       </view>
       <view class="mail">
         <view class="location">
-          <text>地址</text>
+          <text>地址（必填）</text>
+          <image src="../../image/location.png" bindtap="getlocation"></image>
+          <!-- <picker mode="region" bindchange="getchange" value="{{city}}">
+            <view>{{cityname}}</view>
+          </picker> -->
+        </view>
+        <input type="text" placeholder="输入您的详细地址" name="location" value="{{cityname}}"/>
+      </view>
+      <view class="mail">
+        <view>规格型号</view>
+        <input type="text" placeholder="输入您的规格型号" name="model" />
+      </view>
+      <view class="mail">
+        <view>主机编号（必填）</view>
+        <input type="text" placeholder="输入您的主机编号" name="number" />
+      </view>
+      <view class="mail">
+        <view class="date">
+          <text>购机日期（必填）</text>
+          <picker mode="date" bindchange="getdate">
+            <image src="../../image/date.png"></image>
+          </picker>
+        </view>
+        <picker mode="date" bindchange="getdate" class="select">
+          <input type="text" value="{{date}}" placeholder="请选择您的购机日期" disabled/>
+        </picker>
+      </view>
+      <button class="sub" hover-class="none" formType="submit">注册</button>
+    </form>
+  </view>
+  <!-- 故障报修注册 -->
+  <view class="login" wx:if="{{currentTab==1}}">
+    <form bindsubmit="toSubmit">
+      <view class="mail">
+        <view>姓名（必填）</view>
+        <input type="text" placeholder="输入您的姓名" bindinput="registInput" name="name" />
+      </view>
+      <view class="mail">
+        <view>手机号（必填）</view>
+        <input type="text" placeholder="输入您的手机号" name="phone" />
+      </view>
+      <view class="mail">
+        <view>密码（必填）</view>
+        <view class="inp">
+          <input password="{{inpType}}" placeholder="输入您的密码" name="password" />
+          <image src="{{inpType?'../../image/logo-hide.png':'../../image/logo-show.png'}}" bindtap="toshow"></image>
+        </view>
+      </view>
+      <view class="mail">
+        <view class="location">
+          <text>地址（必填）</text>
           <image src="../../image/location.png" bindtap="getlocation"></image>
           <!-- <picker mode="region" bindchange="getchange" value="{{city}}">
             <view>{{cityname}}</view>
@@ -49,7 +105,9 @@
             <image src="../../image/date.png"></image>
           </picker>
         </view>
-        <input type="text" value="{{date}}" placeholder="请选择您的购机日期" disabled/>
+        <picker mode="date" bindchange="getdate" class="select">
+          <input type="text" value="{{date}}" placeholder="请选择您的购机日期" disabled/>
+        </picker>
       </view>
       <button class="sub" hover-class="none" formType="submit">注册</button>
     </form>

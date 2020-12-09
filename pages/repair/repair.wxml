@@ -45,7 +45,7 @@
         </view>
       </view>
       <view class="mail">
-        <view>主机编码</view>
+        <view>主机编号</view>
         <input type="text" placeholder="请输入主机编号" name="code" value="{{userinfor.number}}"/>
       </view>
       <view class="mail">

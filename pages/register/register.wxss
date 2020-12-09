@@ -23,8 +23,28 @@
   color: #8C9198;
   margin-top: 12rpx;
 }
+.tabbar{
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+  padding-left: 30rpx;
+}
+.tabbar view{
+  padding-bottom: 10rpx;
+  color: #656565;
+  font-weight: normal;
+}
+.tabbar view:nth-of-type(2){
+  margin-left: 50rpx;
+}
+.tabbar .cur{
+  color: #01A1FF;
+  border-bottom: 2px solid #01A1FF;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
 .login{
-  margin-top: 80rpx;
+  /* margin-top: 80rpx; */
   padding: 0 30rpx;
 }
 .login .mail,.mail view{
@@ -72,7 +92,6 @@
   width: 40rpx;
   height: 40rpx;
 }
-
 
 .sub{
   margin-top: 50rpx;
