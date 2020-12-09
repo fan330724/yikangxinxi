@@ -106,6 +106,7 @@ Page({
         number: value.number,
         buyDate: this.data.date,
         password: value.password,
+        type: this.data.currentTab,
       }).then(res => {
         console.log(res)
         wx.showToast({
