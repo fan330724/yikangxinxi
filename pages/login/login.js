@@ -58,6 +58,7 @@ Page({
         http.toLogin({
           tel: this.data.cellphone,
           password: this.data.password,
+          openId: wx.getStorageSync('openid')
         }).then(res => {
           console.log(res)
           wx.showToast({
@@ -87,6 +88,7 @@ Page({
         http.toLoginByPick({
           tel: this.data.cellphone,
           password: this.data.password,
+          openId: wx.getStorageSync('openid')
         }).then(res => {
           console.log(res)
           wx.showToast({

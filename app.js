@@ -1,11 +1,11 @@
 //app.js
 App({
   data: {
-    userId:"ff8080817604d0e001760f72c6e30000", //用户id
-    pickId:"ff808081760499dd01760499e1a90001", //接单人id
+    userId: "ff8080817604d0e001760f72c6e30000", //用户id
+    pickId: "ff808081760499dd01760499e1a90001", //接单人id
     // userId:"", //用户id
     // pickId:"", //接单人id
-    userinfor:'', //用户信息
+    userinfor: '', //用户信息
   },
   onLaunch: function () {
     if (wx.canIUse('getUpdateManager')) {
@@ -39,8 +39,28 @@ App({
         }
       })
     }
+    // 获取openid
+    var openid = wx.getStorageSync('openid')
+    if (openid) {
+      return
+    } else {
+      wx.login({
+        success: (res) => {
+          wx.request({
+            url: 'https://www.yk0477.com/api/member/getOpenIdByCode',
+            data: {
+              code: res.code
+            },
+            success: (res) => {
+              console.log(res.data.body.openId)
+              wx.setStorageSync('openid', res.data.body.openId)
+            }
+          })
+        }
+      })
+    }
   },
   globalData: {
-    
+
   }
 })
