@@ -47,7 +47,7 @@
           <image src="{{inpType?'../../image/logo-hide.png':'../../image/logo-show.png'}}" bindtap="toshow"></image>
         </view>
       </view>
-      <view class="reget" bindtap="toreget">忘记密码？</view>
+      <!-- <view class="reget" bindtap="toreget">忘记密码？</view> -->
     </view>
     <view class="sgin">
       <view class="sginIn" bindtap="tologin">登录</view>

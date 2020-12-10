@@ -101,6 +101,8 @@ Page({
         console.log(res)
         wx.showToast({
           title: res.data.msg,
+          icon: 'none',
+          mask: true
         })
         setTimeout(() => {
           wx.reLaunch({

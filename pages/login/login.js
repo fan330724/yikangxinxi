@@ -17,7 +17,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if(wx.getStorageSync('customer')){
+      this.setData({
+        cellphone: wx.getStorageSync('customer').cellphone,
+        password: wx.getStorageSync('customer').password,
+      })
+    }
   },
   //点击小眼睛
   toshow() {
@@ -25,14 +30,31 @@ Page({
       inpType: !this.data.inpType
     })
   },
+  //点击tabbar
   currentTab(e) {
-    if (this.data.currentTab == e.currentTarget.dataset.idx) {
-      return;
+    let idx = e.currentTarget.dataset.idx
+    let customer = wx.getStorageSync('customer')
+    let receiving = wx.getStorageSync('receiving')
+    if(idx == 0){
+      this.setData({
+        cellphone: customer.cellphone,
+        password: customer.password,
+      })
+    }else if(idx == 1){
+      if(receiving){
+        this.setData({
+          cellphone: receiving.cellphone,
+          password: receiving.password,
+        })
+      }else{
+        this.setData({
+          cellphone: '',
+          password: '',
+        })
+      }
     }
     this.setData({
       currentTab: e.currentTarget.dataset.idx,
-      cellphone: "",
-      password: "",
     })
   },
   //获取输入的手机号
@@ -69,6 +91,7 @@ Page({
           if (res.data.errorCode == -1) {
             var list = res.data.body
             app.data.userId = list.userId
+            wx.setStorageSync("customer",{cellphone:this.data.cellphone,password:this.data.password,})
             console.log(list)
             app.data.userinfor = {
               name: list.name,
@@ -97,6 +120,7 @@ Page({
           })
           if (res.data.errorCode == -1) {
             app.data.pickId = res.data.body.pickId
+            wx.setStorageSync("receiving",{cellphone:this.data.cellphone,password:this.data.password,})
             wx.redirectTo({
               url: '../repairorder/repairorder',
             })
