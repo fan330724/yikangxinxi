@@ -27,6 +27,7 @@
     </view>
     <view class="sgin">
       <view class="sginIn" bindtap="tologin">登录</view>
+      
       <view class="uers">
         <text class="news">新用户？</text>
         <text class="register" bindtap="toregister">注册</text>
