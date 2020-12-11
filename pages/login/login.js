@@ -17,10 +17,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(wx.getStorageSync('customer')){
+    if (wx.getStorageSync('customer')) {
       this.setData({
         cellphone: wx.getStorageSync('customer').cellphone,
         password: wx.getStorageSync('customer').password,
+      })
+    }
+    if(options.type){
+      this.setData({
+        currentTab: options.type
       })
     }
   },
@@ -35,18 +40,18 @@ Page({
     let idx = e.currentTarget.dataset.idx
     let customer = wx.getStorageSync('customer')
     let receiving = wx.getStorageSync('receiving')
-    if(idx == 0){
+    if (idx == 0) {
       this.setData({
         cellphone: customer.cellphone,
         password: customer.password,
       })
-    }else if(idx == 1){
-      if(receiving){
+    } else if (idx == 1) {
+      if (receiving) {
         this.setData({
           cellphone: receiving.cellphone,
           password: receiving.password,
         })
-      }else{
+      } else {
         this.setData({
           cellphone: '',
           password: '',
@@ -73,16 +78,18 @@ Page({
   },
   //点击登录按钮
   tologin() {
+    console.log(111)
+    var that = this
     //验证手机号正则
     var pattern = /^[1][3,4,5,6,7,8,9]\d{9}$/;
-    if (pattern.test(this.data.cellphone)) {
-      if (this.data.currentTab == 0) {
+    if (pattern.test(that.data.cellphone)) {
+      if (that.data.currentTab == 0) {
         http.toLogin({
-          tel: this.data.cellphone,
-          password: this.data.password,
+          tel: that.data.cellphone,
+          password: that.data.password,
           openId: wx.getStorageSync('openid')
         }).then(res => {
-          console.log(res)
+          // console.log(res)
           wx.showToast({
             title: res.data.msg,
             icon: 'none',
@@ -91,7 +98,11 @@ Page({
           if (res.data.errorCode == -1) {
             var list = res.data.body
             app.data.userId = list.userId
-            wx.setStorageSync("customer",{cellphone:this.data.cellphone,password:this.data.password,})
+            that.tosubscribe();
+            wx.setStorageSync("customer", {
+              cellphone: that.data.cellphone,
+              password: that.data.password,
+            })
             console.log(list)
             app.data.userinfor = {
               name: list.name,
@@ -101,15 +112,14 @@ Page({
               number: list.number,
             }
             wx.switchTab({
-              url: `../repair/repair`
+              url: `../repair/repair`,
             })
-            this.tosubscribe();
           }
         })
-      } else if (this.data.currentTab == 1) {
+      } else if (that.data.currentTab == 1) {
         http.toLoginByPick({
-          tel: this.data.cellphone,
-          password: this.data.password,
+          tel: that.data.cellphone,
+          password: that.data.password,
           openId: wx.getStorageSync('openid')
         }).then(res => {
           console.log(res)
@@ -120,11 +130,15 @@ Page({
           })
           if (res.data.errorCode == -1) {
             app.data.pickId = res.data.body.pickId
-            wx.setStorageSync("receiving",{cellphone:this.data.cellphone,password:this.data.password,})
+            that.tosubscribe();
+            wx.setStorageSync("receiving", {
+              cellphone: that.data.cellphone,
+              password: that.data.password,
+            })
             wx.redirectTo({
               url: '../repairorder/repairorder',
             })
-            this.tosubscribe();
+
           }
         })
       }
@@ -159,7 +173,7 @@ Page({
         // 调起授权界面弹窗
         if (res.subscriptionsSetting.mainSwitch) { // 用户打开了订阅消息总开关
           if (res.subscriptionsSetting.itemSettings != null) { // 用户同意总是保持是否推送消息的选择, 这里表示以后不会再拉起推送消息的授权
-            let moIdState = res.subscriptionsSetting.itemSettings['CPy60MlR2yTT96hFIgFxqDO875aBGcnSbIfmsLGoylg','R4vWlL7ljh-0ogS9RmBydyuDDQuPvXclvUY6E3xY8hw']; // 用户同意的消息模板id
+            let moIdState = res.subscriptionsSetting.itemSettings['CPy60MlR2yTT96hFIgFxqDO875aBGcnSbIfmsLGoylg', 'wx2pYmmL1o17QaiMVF7nIx1eah8SAGpQ3RdOAzyDQNI']; // 用户同意的消息模板id
             if (moIdState === 'accept') {
               console.log('接受了消息推送');
             } else if (moIdState === 'reject') {
@@ -170,19 +184,42 @@ Page({
           } else {
             // 当用户没有点击 ’总是保持以上选择，不再询问‘  按钮。那每次执到这都会拉起授权弹窗
             wx.requestSubscribeMessage({ // 调起消息订阅界面
-              tmplIds: ['CPy60MlR2yTT96hFIgFxqDO875aBGcnSbIfmsLGoylg','R4vWlL7ljh-0ogS9RmBydyuDDQuPvXclvUY6E3xY8hw'],
+              tmplIds: ['CPy60MlR2yTT96hFIgFxqDO875aBGcnSbIfmsLGoylg', 'wx2pYmmL1o17QaiMVF7nIx1eah8SAGpQ3RdOAzyDQNI'],
               success(res) {
                 console.log('订阅消息 成功 ');
                 console.log(res);
+                if(res.CPy60MlR2yTT96hFIgFxqDO875aBGcnSbIfmsLGoylg == 'accept' || res.wx2pYmmL1o17QaiMVF7nIx1eah8SAGpQ3RdOAzyDQNI == 'accept'){
+                  wx.showToast({
+                    title: '订阅消息 成功',
+                    icon: 'none',
+                    mask: true
+                  })
+                }else{
+                  wx.showToast({
+                    title: '订阅消息 失败',
+                    icon: 'none',
+                    mask: true
+                  })
+                }
               },
               fail(er) {
                 console.log("订阅消息 失败 ");
                 console.log(er);
+                wx.showToast({
+                  title: er.errMsg,
+                  icon: 'none',
+                  mask: true
+                })
               }
             })
           }
         } else {
           console.log('订阅消息未开启')
+          wx.showToast({
+            title: '订阅消息未开启',
+            icon: 'none',
+            mask: true
+          })
         }
       },
       fail: function (error) {
